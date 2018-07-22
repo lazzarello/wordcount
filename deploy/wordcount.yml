@@ -5,5 +5,12 @@
   become: yes
   become_method: sudo
 
+  vars:
+    ssl_hostname: "wordcount.teamnerds.cool"
+    cert_path: "/etc/nginx/ssl"
+    ssl_items:
+      - "server.crt"
+      - "server.key"
+
   roles:
     - wordcount

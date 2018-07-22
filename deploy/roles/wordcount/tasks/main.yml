@@ -1,3 +1,14 @@
 ---
 - name: Install Nginx
   apt: pkg=nginx state=present update_cache=true
+
+- name: Make ssl directory
+  file: 
+    path: "{{ cert_path }}"
+    state: directory
+
+- name: Copy cert and key to server
+  copy:
+    src: "{{ item }}"
+    dest: "{{ cert_path }}"
+  with_items: "{{ ssl_items }}"
