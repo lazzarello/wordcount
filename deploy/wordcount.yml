@@ -1,0 +1,9 @@
+---
+- name: Install a secure word count webservice
+  hosts: all
+  remote_user: ubuntu
+  become: yes
+  become_method: sudo
+
+  roles:
+    - wordcount
