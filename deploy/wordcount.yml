@@ -11,6 +11,11 @@
     ssl_items:
       - "server.crt"
       - "server.key"
+    ruby_install_from_source: True
+    # WTF? this fails for an unknown reason
+    #ruby_download_url: http://cache.ruby-lang.org/pub/ruby/2.5/ruby-2.5.1.tar.gz
+    ruby_version: 2.4.4
 
   roles:
+    - geerlingguy.ruby
     - wordcount
