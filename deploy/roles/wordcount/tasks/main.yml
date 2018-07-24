@@ -27,3 +27,22 @@
 - name: Copy configuration for Nginx proxy
   template: src=default.conf dest=/etc/nginx/conf.d/default.conf
   notify: Restart Nginx
+
+- name: Deploy git repo for API app
+  git:
+    repo: "https://github.com/lazzarello/wordcount.git"
+    dest: "/home/ubuntu/wordcount"
+    force: yes
+  become: yes
+  become_user: ubuntu
+
+- name: Install API dependencies
+  apt: pkg=libsqlite3-dev state=present
+
+- name: Install deps with Bundler
+  bundler:
+    state: present
+    chdir: "/home/ubuntu/wordcount"
+    deployment_mode: yes
+  become: yes
+  become_user: ubuntu
