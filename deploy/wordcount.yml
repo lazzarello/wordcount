@@ -9,6 +9,7 @@
     ssl_hostname: "wordcount.teamnerds.cool"
     cert_path: "/etc/nginx/ssl"
     htpasswd_path: "/etc/nginx/conf"
+    wordcount_path: "/home/ubuntu/wordcount"
     ssl_items:
       - "server.crt"
       - "server.key"
