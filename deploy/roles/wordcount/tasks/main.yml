@@ -13,6 +13,17 @@
     dest: "{{ cert_path }}"
   with_items: "{{ ssl_items }}"
 
+- name: Make htpasswd directory
+  file:
+    path: "{{ htpasswd_path }}"
+    state: directory
+
+- name: Copy htpasswd for basic auth
+  copy:
+    src: htpasswd
+    dest: "{{ htpasswd_path }}/htpasswd"
+    mode: 0640
+    
 - name: Copy configuration for Nginx proxy
   template: src=default.conf dest=/etc/nginx/conf.d/default.conf
   notify: Restart Nginx

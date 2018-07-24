@@ -8,6 +8,7 @@
   vars:
     ssl_hostname: "wordcount.teamnerds.cool"
     cert_path: "/etc/nginx/ssl"
+    htpasswd_path: "/etc/nginx/conf"
     ssl_items:
       - "server.crt"
       - "server.key"
