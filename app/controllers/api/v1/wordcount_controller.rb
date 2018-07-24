@@ -10,13 +10,9 @@ class Api::V1::WordcountController < Api::V1::BaseController
   end
 
   def count
-    words = params['words'].split
+    words = params['words'].split.inject(Hash.new(0)) { |h,v| h[v] +=1;h }
     count = words.size
-    wordlist = {}
-    words.each do |word|
-      wordlist[word] = 1
-    end
-    resp = {:count => count, :words => wordlist}
+    resp = {:count => count, :words => words}
     render json: resp
   end
 end
