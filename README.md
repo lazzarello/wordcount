@@ -6,6 +6,8 @@ This service counts words posted in JSON and returns the total words and each un
 
 `curl --basic --user 'bob' -k -H 'Content-Type: application/json' -X POST --data '{"words": "Hello World!"}' https://198.199.109.116/api/v1/count`
 
+This service needs improvement to work with alphabets that do not have spaces, like Chinese.
+
 ## Testing stuff
 
 echo service (responds with body of the request)
