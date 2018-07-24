@@ -1,24 +1,40 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Usage
 
-Things you may want to cover:
+This service counts words posted in JSON and returns the total words and each unique word and it's frequency.
 
-* Ruby version
+`curl --basic --user 'bob' -k -H 'Content-Type: application/json' -X POST --data '{"words": "Hello World!"}' https://198.199.109.116/api/v1/count`
 
-* System dependencies
+## Testing stuff
 
-* Configuration
+echo service (responds with body of the request)
 
-* Database creation
+`curl --basic --user 'bob' -k -H 'Content-Type: application/json' -X POST --data '{"words": "Hello World!"}' https://198.199.109.116/api/v1/echo`
 
-* Database initialization
+hello world service (prints Hello World!)
 
-* How to run the test suite
+`curl --basic --user 'bob' -k -H 'Content-Type: application/json' https://198.199.109.116/api/v1/hello`
 
-* Services (job queues, cache servers, search engines, etc.)
+## Security
 
-* Deployment instructions
+The SSL cert is from an unknown CA but adding the certbot Ansible role would remove the validation error. Validation with certbot also requires valid DNS so that could be a thing in the playbook too.
 
-* ...
+The endpoint uses HTTP Basic Auth. There are better ways to do authentication.
+
+The web server listens on port 80 but doesn't really do anything. The API service only listens on the HTTPS port.
+
+## Development
+
+Install Ruby 2.4.4
+
+```
+bundle install
+./bin/rails server
+```
+
+## Deployment
+
+Requires Ansible 2.6.1
+
+Check in the `deploy` directory. The script `./run.sh` will deploy to a server specified in `deploy/hosts`
