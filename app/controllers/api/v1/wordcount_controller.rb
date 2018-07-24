@@ -9,7 +9,7 @@ class Api::V1::WordcountController < Api::V1::BaseController
   end
 
   def count
-    words = params['words'].downcase.gsub(/[^a-z0-9\s]/i, '')
+    words = params['words'].downcase.gsub(/[^[:word:]\s]/, '')
     count = words.split.size
     words = words.split.inject(Hash.new(0)) { |h,v| h[v] +=1;h }
     resp = {:count => count, :words => words}
